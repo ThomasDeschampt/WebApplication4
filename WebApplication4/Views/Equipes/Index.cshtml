@@ -10,27 +10,42 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 
-<h4>Conférence Est :</h4>
-<div>
-    @foreach (var item in Model.Where(e => e.CONFERENCE_Equipe == "EST"))
-    {
-        <a href="@Url.Action("Details", new { id = item.ID_Equipe })" class="team-card">
-            <img src="~/Images/Equipes/@(item.LIB_Equipe).png" />
-            <h3>@Html.DisplayFor(modelItem => item.NOM_Equipe)</h3>
-        </a>
-    }
-</div>
+@using (Html.BeginForm("Index", "equipes", FormMethod.Get))
+{
+    <input type="text" name="nom" placeholder="Nom de l'équipe">
+    <button type="submit">Rechercher</button>
+}
 
-<h4>Conférence Ouest :</h4>
-<div>
-    @foreach (var item in Model.Where(e => e.CONFERENCE_Equipe == "OUEST"))
-    {
-        <a href="@Url.Action("Details", new { id = item.ID_Equipe })" class="team-card">
-            <img src="~/Images/Equipes/@(item.LIB_Equipe).png" />
-            <h3>@Html.DisplayFor(modelItem => item.NOM_Equipe)</h3>
-        </a>
-    }
-</div>
+@if (Model != null && Model.Any())
+{
+    <h4>Conférence Est :</h4>
+    <div>
+        @foreach (var item in Model.Where(e => e.CONFERENCE_Equipe == "EST"))
+        {
+            <a href="@Url.Action("Details", new { id = item.ID_Equipe })" class="team-card">
+                <img src="~/Images/Equipes/@(item.LIB_Equipe).png" />
+                <h3>@Html.DisplayFor(modelItem => item.NOM_Equipe)</h3>
+            </a>
+        }
+    </div>
+
+    <h4>Conférence Ouest :</h4>
+    <div>
+        @foreach (var item in Model.Where(e => e.CONFERENCE_Equipe == "OUEST"))
+        {
+            <a href="@Url.Action("Details", new { id = item.ID_Equipe })" class="team-card">
+                <img src="~/Images/Equipes/@(item.LIB_Equipe).png" />
+                <h3>@Html.DisplayFor(modelItem => item.NOM_Equipe)</h3>
+            </a>
+        }
+    </div>
+}
+else
+{
+    <p id="phrase">Aucune équipe trouvée.</p>
+}
+
+
 
 <style>
     .team-card {
@@ -44,11 +59,11 @@
         cursor: pointer;
     }
 
-    .team-card img {
-        max-width: 100px;
-        max-height: 100px;
-    }
-    
+        .team-card img {
+            max-width: 100px;
+            max-height: 100px;
+        }
+
     h3 {
         margin-top: 10px;
         font-size: 18px;
@@ -62,13 +77,13 @@
         margin: 10px 0;
     }
 
-     a{
-         text-decoration: none;
-     }
+    a {
+        text-decoration: none;
+    }
 
-     h2{
-   text-align: center;
- font-size: 40px;
-   font-weight: bold;
-     }
+    h2 {
+        text-align: center;
+        font-size: 40px;
+        font-weight: bold;
+    }
 </style>

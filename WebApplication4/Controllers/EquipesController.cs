@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication4.Models;
+using System.Net.Http;
 
 namespace WebApplication4.Controllers
 {
@@ -16,9 +17,16 @@ namespace WebApplication4.Controllers
         private NBAEntities db = new NBAEntities();
 
         // GET: Equipes
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(string nom)
         {
-            return View(await db.Equipes.ToListAsync());
+            //on renvoit la liste des equipes en fonction du nom
+            var equipes = from e in db.Equipes
+                          select e;
+            if (!String.IsNullOrEmpty(nom))
+            {
+                equipes = equipes.Where(s => s.NOM_Equipe.Contains(nom));
+            }
+            return View(equipes);
         }
 
         // GET: Equipes/Details/5
