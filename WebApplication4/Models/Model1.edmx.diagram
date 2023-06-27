@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9ac2f7490a4348f4aae72c4e5a2089c0" Name="Diagram1">
+        <EntityTypeShape EntityType="NBAModel.Equipes" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="NBAModel.Joueurs" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NBAModel.Match_joueur" Width="1.5" PointX="5.25" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NBAModel.Matchs" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <AssociationConnector Association="NBAModel.FK__Joueurs__ID_Equi__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="NBAModel.FK__Match_jou__ID_Jo__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="NBAModel.FK__Match_jou__ID_Ma__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="NBAModel.Match_equipe" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

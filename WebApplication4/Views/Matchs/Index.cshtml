@@ -1,0 +1,63 @@
+﻿@model IEnumerable<WebApplication4.Models.Matchs>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.LIEU_Match)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DATE_Match)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ID_EQUIPE_VIS_Match)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ID_EQUIPE_DOM_Match)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SCORE_VIS_Match)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SCORE_DOM_Match)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.LIEU_Match)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DATE_Match)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID_EQUIPE_VIS_Match)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID_EQUIPE_DOM_Match)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SCORE_VIS_Match)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SCORE_DOM_Match)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID_Match }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID_Match }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID_Match })
+        </td>
+    </tr>
+}
+
+</table>

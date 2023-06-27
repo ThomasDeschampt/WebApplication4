@@ -1,0 +1,350 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="NBAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Equipes">
+          <Key>
+            <PropertyRef Name="ID_Equipe" />
+          </Key>
+          <Property Name="ID_Equipe" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOM_Equipe" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LIB_Equipe" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="NOMBRE_VICTOIRES_Equipe" Type="int" Nullable="false" />
+          <Property Name="NOMBRE_DEFAITES_Equipe" Type="int" Nullable="false" />
+          <Property Name="CONFERENCE_Equipe" Type="varchar" MaxLength="5" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Joueurs">
+          <Key>
+            <PropertyRef Name="ID_Joueur" />
+          </Key>
+          <Property Name="ID_Joueur" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOM_Joueur" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PRENOM_Joueur" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AGE_Joueur" Type="tinyint" Nullable="false" />
+          <Property Name="NUMERO_Joueur" Type="tinyint" Nullable="false" />
+          <Property Name="POSTE_Joueur" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID_Equipe" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Match_equipe">
+          <Key>
+            <PropertyRef Name="ID_Match" />
+            <PropertyRef Name="ID_Equipe" />
+          </Key>
+          <Property Name="ID_Match" Type="int" Nullable="false" />
+          <Property Name="ID_Equipe" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Match_joueur">
+          <Key>
+            <PropertyRef Name="ID_Match" />
+            <PropertyRef Name="ID_Joueur" />
+          </Key>
+          <Property Name="ID_Match" Type="int" Nullable="false" />
+          <Property Name="ID_Joueur" Type="int" Nullable="false" />
+          <Property Name="ScoreJoueur" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Matchs">
+          <Key>
+            <PropertyRef Name="ID_Match" />
+          </Key>
+          <Property Name="ID_Match" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LIEU_Match" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DATE_Match" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ID_EQUIPE_VIS_Match" Type="int" Nullable="false" />
+          <Property Name="ID_EQUIPE_DOM_Match" Type="int" Nullable="false" />
+          <Property Name="SCORE_VIS_Match" Type="smallint" Nullable="false" />
+          <Property Name="SCORE_DOM_Match" Type="smallint" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Joueurs__ID_Equi__3D5E1FD2">
+          <End Role="Equipes" Type="Self.Equipes" Multiplicity="1" />
+          <End Role="Joueurs" Type="Self.Joueurs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipes">
+              <PropertyRef Name="ID_Equipe" />
+            </Principal>
+            <Dependent Role="Joueurs">
+              <PropertyRef Name="ID_Equipe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Match_equ__ID_Eq__44FF419A">
+          <End Role="Equipes" Type="Self.Equipes" Multiplicity="1" />
+          <End Role="Match_equipe" Type="Self.Match_equipe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipes">
+              <PropertyRef Name="ID_Equipe" />
+            </Principal>
+            <Dependent Role="Match_equipe">
+              <PropertyRef Name="ID_Equipe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Match_equ__ID_Ma__440B1D61">
+          <End Role="Matchs" Type="Self.Matchs" Multiplicity="1" />
+          <End Role="Match_equipe" Type="Self.Match_equipe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Matchs">
+              <PropertyRef Name="ID_Match" />
+            </Principal>
+            <Dependent Role="Match_equipe">
+              <PropertyRef Name="ID_Match" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Match_jou__ID_Jo__412EB0B6">
+          <End Role="Joueurs" Type="Self.Joueurs" Multiplicity="1" />
+          <End Role="Match_joueur" Type="Self.Match_joueur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Joueurs">
+              <PropertyRef Name="ID_Joueur" />
+            </Principal>
+            <Dependent Role="Match_joueur">
+              <PropertyRef Name="ID_Joueur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Match_jou__ID_Ma__403A8C7D">
+          <End Role="Matchs" Type="Self.Matchs" Multiplicity="1" />
+          <End Role="Match_joueur" Type="Self.Match_joueur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Matchs">
+              <PropertyRef Name="ID_Match" />
+            </Principal>
+            <Dependent Role="Match_joueur">
+              <PropertyRef Name="ID_Match" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NBAModelStoreContainer">
+          <EntitySet Name="Equipes" EntityType="Self.Equipes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Joueurs" EntityType="Self.Joueurs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Match_equipe" EntityType="Self.Match_equipe" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Match_joueur" EntityType="Self.Match_joueur" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Matchs" EntityType="Self.Matchs" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Joueurs__ID_Equi__3D5E1FD2" Association="Self.FK__Joueurs__ID_Equi__3D5E1FD2">
+            <End Role="Equipes" EntitySet="Equipes" />
+            <End Role="Joueurs" EntitySet="Joueurs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Match_equ__ID_Eq__44FF419A" Association="Self.FK__Match_equ__ID_Eq__44FF419A">
+            <End Role="Equipes" EntitySet="Equipes" />
+            <End Role="Match_equipe" EntitySet="Match_equipe" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Match_equ__ID_Ma__440B1D61" Association="Self.FK__Match_equ__ID_Ma__440B1D61">
+            <End Role="Matchs" EntitySet="Matchs" />
+            <End Role="Match_equipe" EntitySet="Match_equipe" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Match_jou__ID_Jo__412EB0B6" Association="Self.FK__Match_jou__ID_Jo__412EB0B6">
+            <End Role="Joueurs" EntitySet="Joueurs" />
+            <End Role="Match_joueur" EntitySet="Match_joueur" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Match_jou__ID_Ma__403A8C7D" Association="Self.FK__Match_jou__ID_Ma__403A8C7D">
+            <End Role="Matchs" EntitySet="Matchs" />
+            <End Role="Match_joueur" EntitySet="Match_joueur" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NBAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Equipes">
+          <Key>
+            <PropertyRef Name="ID_Equipe" />
+          </Key>
+          <Property Name="ID_Equipe" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOM_Equipe" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LIB_Equipe" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NOMBRE_VICTOIRES_Equipe" Type="Int32" Nullable="false" />
+          <Property Name="NOMBRE_DEFAITES_Equipe" Type="Int32" Nullable="false" />
+          <Property Name="CONFERENCE_Equipe" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Joueurs" Relationship="Self.FK__Joueurs__ID_Equi__3D5E1FD2" FromRole="Equipes" ToRole="Joueurs" />
+          <NavigationProperty Name="Matchs" Relationship="Self.Match_equipe" FromRole="Equipes" ToRole="Matchs" />
+        </EntityType>
+        <EntityType Name="Joueurs">
+          <Key>
+            <PropertyRef Name="ID_Joueur" />
+          </Key>
+          <Property Name="ID_Joueur" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOM_Joueur" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRENOM_Joueur" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AGE_Joueur" Type="Byte" Nullable="false" />
+          <Property Name="NUMERO_Joueur" Type="Byte" Nullable="false" />
+          <Property Name="POSTE_Joueur" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_Equipe" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Equipes" Relationship="Self.FK__Joueurs__ID_Equi__3D5E1FD2" FromRole="Joueurs" ToRole="Equipes" />
+          <NavigationProperty Name="Match_joueur" Relationship="Self.FK__Match_jou__ID_Jo__412EB0B6" FromRole="Joueurs" ToRole="Match_joueur" />
+        </EntityType>
+        <EntityType Name="Match_joueur">
+          <Key>
+            <PropertyRef Name="ID_Match" />
+            <PropertyRef Name="ID_Joueur" />
+          </Key>
+          <Property Name="ID_Match" Type="Int32" Nullable="false" />
+          <Property Name="ID_Joueur" Type="Int32" Nullable="false" />
+          <Property Name="ScoreJoueur" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Joueurs" Relationship="Self.FK__Match_jou__ID_Jo__412EB0B6" FromRole="Match_joueur" ToRole="Joueurs" />
+          <NavigationProperty Name="Matchs" Relationship="Self.FK__Match_jou__ID_Ma__403A8C7D" FromRole="Match_joueur" ToRole="Matchs" />
+        </EntityType>
+        <EntityType Name="Matchs">
+          <Key>
+            <PropertyRef Name="ID_Match" />
+          </Key>
+          <Property Name="ID_Match" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LIEU_Match" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DATE_Match" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ID_EQUIPE_VIS_Match" Type="Int32" Nullable="false" />
+          <Property Name="ID_EQUIPE_DOM_Match" Type="Int32" Nullable="false" />
+          <Property Name="SCORE_VIS_Match" Type="Int16" Nullable="false" />
+          <Property Name="SCORE_DOM_Match" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Match_joueur" Relationship="Self.FK__Match_jou__ID_Ma__403A8C7D" FromRole="Matchs" ToRole="Match_joueur" />
+          <NavigationProperty Name="Equipes" Relationship="Self.Match_equipe" FromRole="Matchs" ToRole="Equipes" />
+        </EntityType>
+        <Association Name="FK__Joueurs__ID_Equi__3D5E1FD2">
+          <End Role="Equipes" Type="Self.Equipes" Multiplicity="1" />
+          <End Role="Joueurs" Type="Self.Joueurs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipes">
+              <PropertyRef Name="ID_Equipe" />
+            </Principal>
+            <Dependent Role="Joueurs">
+              <PropertyRef Name="ID_Equipe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Match_jou__ID_Jo__412EB0B6">
+          <End Role="Joueurs" Type="Self.Joueurs" Multiplicity="1" />
+          <End Role="Match_joueur" Type="Self.Match_joueur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Joueurs">
+              <PropertyRef Name="ID_Joueur" />
+            </Principal>
+            <Dependent Role="Match_joueur">
+              <PropertyRef Name="ID_Joueur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Match_jou__ID_Ma__403A8C7D">
+          <End Role="Matchs" Type="Self.Matchs" Multiplicity="1" />
+          <End Role="Match_joueur" Type="Self.Match_joueur" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Matchs">
+              <PropertyRef Name="ID_Match" />
+            </Principal>
+            <Dependent Role="Match_joueur">
+              <PropertyRef Name="ID_Match" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Match_equipe">
+          <End Role="Equipes" Type="Self.Equipes" Multiplicity="*" />
+          <End Role="Matchs" Type="Self.Matchs" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="NBAEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Equipes" EntityType="Self.Equipes" />
+          <EntitySet Name="Joueurs" EntityType="Self.Joueurs" />
+          <EntitySet Name="Match_joueur" EntityType="Self.Match_joueur" />
+          <EntitySet Name="Matchs" EntityType="Self.Matchs" />
+          <AssociationSet Name="FK__Joueurs__ID_Equi__3D5E1FD2" Association="Self.FK__Joueurs__ID_Equi__3D5E1FD2">
+            <End Role="Equipes" EntitySet="Equipes" />
+            <End Role="Joueurs" EntitySet="Joueurs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Match_jou__ID_Jo__412EB0B6" Association="Self.FK__Match_jou__ID_Jo__412EB0B6">
+            <End Role="Joueurs" EntitySet="Joueurs" />
+            <End Role="Match_joueur" EntitySet="Match_joueur" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Match_jou__ID_Ma__403A8C7D" Association="Self.FK__Match_jou__ID_Ma__403A8C7D">
+            <End Role="Matchs" EntitySet="Matchs" />
+            <End Role="Match_joueur" EntitySet="Match_joueur" />
+          </AssociationSet>
+          <AssociationSet Name="Match_equipe" Association="Self.Match_equipe">
+            <End Role="Equipes" EntitySet="Equipes" />
+            <End Role="Matchs" EntitySet="Matchs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="NBAModelStoreContainer" CdmEntityContainer="NBAEntities">
+          <EntitySetMapping Name="Equipes">
+            <EntityTypeMapping TypeName="NBAModel.Equipes">
+              <MappingFragment StoreEntitySet="Equipes">
+                <ScalarProperty Name="ID_Equipe" ColumnName="ID_Equipe" />
+                <ScalarProperty Name="NOM_Equipe" ColumnName="NOM_Equipe" />
+                <ScalarProperty Name="LIB_Equipe" ColumnName="LIB_Equipe" />
+                <ScalarProperty Name="NOMBRE_VICTOIRES_Equipe" ColumnName="NOMBRE_VICTOIRES_Equipe" />
+                <ScalarProperty Name="NOMBRE_DEFAITES_Equipe" ColumnName="NOMBRE_DEFAITES_Equipe" />
+                <ScalarProperty Name="CONFERENCE_Equipe" ColumnName="CONFERENCE_Equipe" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Joueurs">
+            <EntityTypeMapping TypeName="NBAModel.Joueurs">
+              <MappingFragment StoreEntitySet="Joueurs">
+                <ScalarProperty Name="ID_Joueur" ColumnName="ID_Joueur" />
+                <ScalarProperty Name="NOM_Joueur" ColumnName="NOM_Joueur" />
+                <ScalarProperty Name="PRENOM_Joueur" ColumnName="PRENOM_Joueur" />
+                <ScalarProperty Name="AGE_Joueur" ColumnName="AGE_Joueur" />
+                <ScalarProperty Name="NUMERO_Joueur" ColumnName="NUMERO_Joueur" />
+                <ScalarProperty Name="POSTE_Joueur" ColumnName="POSTE_Joueur" />
+                <ScalarProperty Name="ID_Equipe" ColumnName="ID_Equipe" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Match_joueur">
+            <EntityTypeMapping TypeName="NBAModel.Match_joueur">
+              <MappingFragment StoreEntitySet="Match_joueur">
+                <ScalarProperty Name="ID_Match" ColumnName="ID_Match" />
+                <ScalarProperty Name="ID_Joueur" ColumnName="ID_Joueur" />
+                <ScalarProperty Name="ScoreJoueur" ColumnName="ScoreJoueur" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Matchs">
+            <EntityTypeMapping TypeName="NBAModel.Matchs">
+              <MappingFragment StoreEntitySet="Matchs">
+                <ScalarProperty Name="ID_Match" ColumnName="ID_Match" />
+                <ScalarProperty Name="LIEU_Match" ColumnName="LIEU_Match" />
+                <ScalarProperty Name="DATE_Match" ColumnName="DATE_Match" />
+                <ScalarProperty Name="ID_EQUIPE_VIS_Match" ColumnName="ID_EQUIPE_VIS_Match" />
+                <ScalarProperty Name="ID_EQUIPE_DOM_Match" ColumnName="ID_EQUIPE_DOM_Match" />
+                <ScalarProperty Name="SCORE_VIS_Match" ColumnName="SCORE_VIS_Match" />
+                <ScalarProperty Name="SCORE_DOM_Match" ColumnName="SCORE_DOM_Match" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Match_equipe" TypeName="NBAModel.Match_equipe" StoreEntitySet="Match_equipe">
+            <EndProperty Name="Equipes">
+              <ScalarProperty Name="ID_Equipe" ColumnName="ID_Equipe" />
+            </EndProperty>
+            <EndProperty Name="Matchs">
+              <ScalarProperty Name="ID_Match" ColumnName="ID_Match" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

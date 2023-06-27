@@ -1,0 +1,58 @@
+﻿@model WebApplication4.Models.Equipes
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Equipes</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NOM_Equipe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NOM_Equipe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LIB_Equipe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LIB_Equipe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NOMBRE_VICTOIRES_Equipe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NOMBRE_VICTOIRES_Equipe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NOMBRE_DEFAITES_Equipe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NOMBRE_DEFAITES_Equipe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CONFERENCE_Equipe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CONFERENCE_Equipe)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_Equipe }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,66 @@
+﻿@model WebApplication4.Models.Matchs
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Matchs</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LIEU_Match)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LIEU_Match)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DATE_Match)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DATE_Match)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ID_EQUIPE_VIS_Match)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ID_EQUIPE_VIS_Match)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ID_EQUIPE_DOM_Match)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ID_EQUIPE_DOM_Match)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SCORE_VIS_Match)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SCORE_VIS_Match)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SCORE_DOM_Match)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SCORE_DOM_Match)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_Match }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

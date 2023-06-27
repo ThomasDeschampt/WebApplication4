@@ -1,0 +1,42 @@
+﻿@model WebApplication4.Models.Match_joueur
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Match_joueur</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ScoreJoueur)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ScoreJoueur)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Joueurs.NOM_Joueur)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Joueurs.NOM_Joueur)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Matchs.LIEU_Match)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Matchs.LIEU_Match)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
