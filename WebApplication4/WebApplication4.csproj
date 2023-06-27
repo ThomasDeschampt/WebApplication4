@@ -111,6 +111,36 @@
   <ItemGroup>
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
+    <Content Include="Images\Equipes\ATL.png" />
+    <Content Include="Images\Equipes\BOS.png" />
+    <Content Include="Images\Equipes\BRK.png" />
+    <Content Include="Images\Equipes\CHA.png" />
+    <Content Include="Images\Equipes\CHI.png" />
+    <Content Include="Images\Equipes\CLE.png" />
+    <Content Include="Images\Equipes\DAL.png" />
+    <Content Include="Images\Equipes\DEN.png" />
+    <Content Include="Images\Equipes\DET.png" />
+    <Content Include="Images\Equipes\GSW.png" />
+    <Content Include="Images\Equipes\HOU.png" />
+    <Content Include="Images\Equipes\IND.png" />
+    <Content Include="Images\Equipes\LAC.png" />
+    <Content Include="Images\Equipes\LAL.png" />
+    <Content Include="Images\Equipes\MEM.png" />
+    <Content Include="Images\Equipes\MIA.png" />
+    <Content Include="Images\Equipes\MIL.png" />
+    <Content Include="Images\Equipes\MIN.png" />
+    <Content Include="Images\Equipes\NO.png" />
+    <Content Include="Images\Equipes\NYK.png" />
+    <Content Include="Images\Equipes\OKC.png" />
+    <Content Include="Images\Equipes\ORL.png" />
+    <Content Include="Images\Equipes\PHI.png" />
+    <Content Include="Images\Equipes\PHX.png" />
+    <Content Include="Images\Equipes\POR.png" />
+    <Content Include="Images\Equipes\SA.png" />
+    <Content Include="Images\Equipes\SAC.png" />
+    <Content Include="Images\Equipes\TOR.png" />
+    <Content Include="Images\Equipes\UTA.png" />
+    <Content Include="Images\Equipes\WAS.png" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model1.Context.cs</LastGenOutput>
@@ -127,6 +157,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\EquipesController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JoueursController.cs" />
     <Compile Include="Controllers\MatchsController.cs" />
     <Compile Include="Controllers\Match_joueurController.cs" />
@@ -175,25 +206,21 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Matchs\Create.cshtml" />
-    <Content Include="Views\Matchs\Delete.cshtml" />
     <Content Include="Views\Matchs\Details.cshtml" />
-    <Content Include="Views\Matchs\Edit.cshtml" />
     <Content Include="Views\Matchs\Index.cshtml" />
-    <Content Include="Views\Equipes\Create.cshtml" />
-    <Content Include="Views\Equipes\Delete.cshtml" />
-    <Content Include="Views\Equipes\Details.cshtml" />
-    <Content Include="Views\Equipes\Edit.cshtml" />
-    <Content Include="Views\Equipes\Index.cshtml" />
     <Content Include="Views\Match_joueur\Create.cshtml" />
-    <Content Include="Views\Match_joueur\Delete.cshtml" />
     <Content Include="Views\Match_joueur\Details.cshtml" />
-    <Content Include="Views\Match_joueur\Edit.cshtml" />
     <Content Include="Views\Match_joueur\Index.cshtml" />
     <Content Include="Views\Joueurs\Create.cshtml" />
     <Content Include="Views\Joueurs\Delete.cshtml" />
     <Content Include="Views\Joueurs\Details.cshtml" />
-    <Content Include="Views\Joueurs\Edit.cshtml" />
     <Content Include="Views\Joueurs\Index.cshtml" />
+    <Content Include="Views\Equipes\Details.cshtml" />
+    <Content Include="Views\Equipes\Edit.cshtml" />
+    <Content Include="Views\Equipes\Index.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

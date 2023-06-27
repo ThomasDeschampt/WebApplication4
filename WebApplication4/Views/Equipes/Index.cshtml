@@ -4,54 +4,71 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Equipe de  NBA :</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.NOM_Equipe)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LIB_Equipe)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NOMBRE_VICTOIRES_Equipe)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NOMBRE_DEFAITES_Equipe)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CONFERENCE_Equipe)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.NOM_Equipe)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LIB_Equipe)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NOMBRE_VICTOIRES_Equipe)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NOMBRE_DEFAITES_Equipe)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CONFERENCE_Equipe)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID_Equipe }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID_Equipe }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID_Equipe })
-        </td>
-    </tr>
-}
+<h4>Conférence Est :</h4>
+<div>
+    @foreach (var item in Model.Where(e => e.CONFERENCE_Equipe == "EST"))
+    {
+        <a href="@Url.Action("Details", new { id = item.ID_Equipe })" class="team-card">
+            <img src="~/Images/Equipes/@(item.LIB_Equipe).png" />
+            <h3>@Html.DisplayFor(modelItem => item.NOM_Equipe)</h3>
+        </a>
+    }
+</div>
 
-</table>
+<h4>Conférence Ouest :</h4>
+<div>
+    @foreach (var item in Model.Where(e => e.CONFERENCE_Equipe == "OUEST"))
+    {
+        <a href="@Url.Action("Details", new { id = item.ID_Equipe })" class="team-card">
+            <img src="~/Images/Equipes/@(item.LIB_Equipe).png" />
+            <h3>@Html.DisplayFor(modelItem => item.NOM_Equipe)</h3>
+        </a>
+    }
+</div>
+
+<style>
+    .team-card {
+        display: inline-block;
+        width: 30%;
+        margin: 10px;
+        padding: 10px;
+        text-align: center;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .team-card img {
+        max-width: 100px;
+        max-height: 100px;
+    }
+    
+    h3 {
+        margin-top: 10px;
+        font-size: 18px;
+        color: #333;
+        text-decoration: none;
+    }
+
+    h4 {
+        font-size: 24px;
+        font-weight: bold;
+        margin: 10px 0;
+    }
+
+     a{
+         text-decoration: none;
+     }
+
+     h2{
+   text-align: center;
+ font-size: 40px;
+   font-weight: bold;
+     }
+</style>
