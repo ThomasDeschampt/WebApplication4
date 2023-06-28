@@ -9,54 +9,80 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.LIEU_Match)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DATE_Match)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ID_EQUIPE_VIS_Match)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ID_EQUIPE_DOM_Match)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SCORE_VIS_Match)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SCORE_DOM_Match)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.LIEU_Match)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DATE_Match)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ID_EQUIPE_VIS_Match)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ID_EQUIPE_DOM_Match)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SCORE_VIS_Match)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SCORE_DOM_Match)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID_Match }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID_Match }) |
-        </td>
-    </tr>
-}
-
+<table>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="team">
+                <a href="@Url.Action("Details", new { id = item.ID_Match })">
+                    <img src="~/Images/Equipes/@(item.ID_EQUIPE_VIS_Match).png" />
+                    <br />
+                </a>
+            </td>
+            <td class="team">
+                <strong>
+                    VS
+                </strong>
+            </td>
+            <td class="team">
+                <a href="@Url.Action("Details", new { id = item.ID_Match })">
+                    <img src="~/Images/Equipes/@(item.ID_EQUIPE_DOM_Match).png" />
+                    <br />
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td class="score" colspan="3" style="text-align: center; border-bottom: 1px solid #ccc;">
+                <a href="@Url.Action("Details", new { id = item.ID_Match })">
+                    @Html.DisplayFor(modelItem => item.SCORE_VIS_Match)
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    -
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    @Html.DisplayFor(modelItem => item.SCORE_DOM_Match)
+                </a>
+            </td>
+        </tr>
+    }
 </table>
+
+<style>
+    .team {
+        width: 33%;
+        text-align: center;
+        padding: 10px;
+        border: 1px solid #ccc;
+    }
+    .team img {
+        width: 250px;
+    }
+    .score {
+        padding: 10px;
+        border: 1px solid #ccc;
+    }
+
+    a{
+        text-decoration: none;
+        color: black;
+    }
+
+    /*Mettre les elements au centre de la page*/
+table{
+        margin: auto;
+        margin-bottom: 50px;
+        padding: 50px;
+    }
+
+    /*Mettre de l'espace entre les différents items du foreach*/
+tr{
+        margin-bottom: 10px;
+    }
+</style>

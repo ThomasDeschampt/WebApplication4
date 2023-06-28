@@ -6,14 +6,12 @@
 
 <h2>Equipe de  NBA :</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-
 @using (Html.BeginForm("Index", "equipes", FormMethod.Get))
 {
     <input type="text" name="nom" placeholder="Nom de l'équipe">
-    <button type="submit">Rechercher</button>
+    <button type="submit">
+        <img src="~/Images/loupe.png" height="20px" />
+    </button>
 }
 
 @if (Model != null && Model.Any())
@@ -23,7 +21,7 @@
         @foreach (var item in Model.Where(e => e.CONFERENCE_Equipe == "EST"))
         {
             <a href="@Url.Action("Details", new { id = item.ID_Equipe })" class="team-card">
-                <img src="~/Images/Equipes/@(item.LIB_Equipe).png" />
+                <img src="~/Images/Equipes/@(item.ID_Equipe).png" />
                 <h3>@Html.DisplayFor(modelItem => item.NOM_Equipe)</h3>
             </a>
         }
@@ -34,7 +32,7 @@
         @foreach (var item in Model.Where(e => e.CONFERENCE_Equipe == "OUEST"))
         {
             <a href="@Url.Action("Details", new { id = item.ID_Equipe })" class="team-card">
-                <img src="~/Images/Equipes/@(item.LIB_Equipe).png" />
+                <img src="~/Images/Equipes/@(item.ID_Equipe).png" />
                 <h3>@Html.DisplayFor(modelItem => item.NOM_Equipe)</h3>
             </a>
         }
@@ -75,6 +73,7 @@ else
         font-size: 24px;
         font-weight: bold;
         margin: 10px 0;
+        text-align: center;
     }
 
     a {
@@ -86,4 +85,24 @@ else
         font-size: 40px;
         font-weight: bold;
     }
+
+    input[type="text"] {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+        margin -right: 10px;
+        height: 40px;
+    }
+
+    /* Style pour le bouton */
+    button[type="submit"] {
+        background-color: darkblue;
+        color: white;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 10px;
+        cursor: pointer;
+        height: 40px;
+    }
+
 </style>
